@@ -1,1 +1,30 @@
+#   THE ASSIGNMENT 
+It was to handle the missingness in the dateset of Hormonal and Biochemical Profile in Patients
 
+#   DATA DESCRIPTION
+The dataset contained identifiers (record_id), hormaonal profile (hormonr1 to hormone14), Lipid variables (lipods1 to lipids15), and categorical factors (ethnicity, PCOS, clinical outcomes)
+
+#   ENVIRONMENT AND REQUIREMENTS
+R Version: 4.5.x3 (Recommended)
+Core Libraries:
+tidyverse (dplyr, ggplot2, tidyr): Data manipulation and visualization.
+skimr: Summary statistics.
+mice: Multiple Imputation by Chained Equations.
+naniar & visdat: Missing data visualization.
+dbscan: Local Outlier Factor (LOF) calculation.
+
+#   PROCEEDURE
+1. Exploratory Data Analysis (EDA)
+Initial screening using skim() to understand distributions.
+Filtered out variables with >35% missingness to maintain data integrity.
+2. Missing Data Analysis
+Visualization: Used vis_miss() and gg_miss_var() to identify if data was Missing Completely at Random (MCAR).
+Hypothesis Testing: Outlined Little’s MCAR test logic to determine the appropriate imputation strategy.
+3. Multiple Imputation (MICE)
+Two methods were compared for filling in missing values:
+Predictive Mean Matching (PMM): The default for numeric data.
+Random Forest (RF): Used to capture non-linear relationships between hormones and lipids.
+Validation: Density plots were generated to ensure imputed distributions matched the original data shape.
+4. Outlier Detection
+Univariate: Standard boxplots for individual lipid variables.
+Multivariate (Advanced): Implemented the Local Outlier Factor (LOF) algorithm. This identifies "hidden" outliers by comparing the local density of a point to its neighbors—catching anomalies that a standard boxplot would miss.
